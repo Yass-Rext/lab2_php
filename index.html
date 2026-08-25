@@ -1,0 +1,85 @@
+<frameset rows="21%,*" >
+<frame src="entete.html" noresize="true">
+     <frameset cols="12%,*" border="5">
+     <frame src="menu.html" noresize="true">
+     <frame name="corps" src="">
+</frameset>
+</frameset>
+
+
+
+
+<?php
+
+session_start();
+
+
+
+    // Récupération 
+    $_SESSION['numINE'] = $_POST['NumINE'];
+    $_SESSION['prenom'] = $_POST['Prenom'];
+    $_SESSION['nom'] = $_POST['Nom'];
+    $_SESSION['age'] = $_POST['Age'] ;
+    $_SESSION['genre'] = $_POST['Genre'] ;
+    $_SESSION['campus'] = $_POST['Campus'];
+    $_SESSION['specialite'] = $_POST['Specialite'] ;
+
+
+    //class etudiant
+class Etudiant {
+    // Déclaration des variables
+    var $numINE;
+    var $prenom;
+    var $nom;
+    var $age;
+    var $genre;
+    var $campus;
+    var $specialite;
+    
+
+    // Méthode d'affichage
+    function affichage() {
+        echo "Les informations de l'étudiant sont: " . "<br>";
+        
+        echo "NumINE :"  . $this->numINE . "<br>";
+
+        echo "Prenom :"  . $this->prenom . "<br>";
+        
+        echo "Nom :"  . $this->nom . "<br>";
+        
+        echo "Age:"  . $this->age . "<br>";
+        
+        echo "Gnre:"  . $this->genre . "<br>";
+        
+        echo "Campus:"  . $this->campus . "<br>";
+        
+        echo"Specialite:"  . $this->specialite . "<br>";
+    }
+}
+
+// Vérification si les données de session existent 
+if (isset($_SESSION['numINE'])) {
+    
+    $etudiant = new Etudiant();
+    
+    //affectation
+    $etudiant->numINE = $_SESSION['numINE'];
+
+    $etudiant->prenom = $_SESSION['prenom'];
+    
+    $etudiant->nom = $_SESSION['nom'];
+    
+    $etudiant->age = $_SESSION['age'];
+    
+    $etudiant->genre = $_SESSION['genre'];
+    
+    $etudiant->campus = $_SESSION['campus'];
+    
+    $etudiant->specialite = $_SESSION['specialite'];
+
+    //
+    $etudiant->affichage();
+} else {
+    echo "Aucune donnée d'étudiant trouvée.";
+}
+?>
